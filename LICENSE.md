@@ -2,7 +2,7 @@
 
 ## Commons Clause License Condition v1.0
 
-The software known as Mesk Ul-Khitam ("Software") is provided to you ("Licensee") by [Your Organization or Your Name] ("Licensor") under the following License, subject to the additional condition outlined below.
+The software known as Mesk Ul-Khitam ("Software") is provided to you ("Licensee") by Muaz Hurani ("Licensor") under the following License, subject to the additional condition outlined below.
 
 ### License
 
