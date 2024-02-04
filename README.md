@@ -24,7 +24,7 @@ To run Mesk Ul-Khitam, ensure you have the following installed:
 
 1. Clone the repository:
    ```
-   git clone [repository URL]
+   git clone (https://github.com/muazhurani/mesk-ulkhitam.git)
    ```
 2. Install dependencies:
    ```
@@ -67,7 +67,7 @@ As an open-source project, contributions are welcome and appreciated. You can co
 
 ## License
 
-Mesk Ul-Khitam is released under [License Name], which allows for modification and distribution for both personal and commercial purposes.
+Mesk Ul-Khitam is released under [Commons Clause License Condition v1.0](https://commonsclause.com/), which allows for modification and distribution for both personal and commercial purposes.
 
 ## Contact
 
