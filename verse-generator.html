@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+    <title>Mesk Ulkhitam</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a href="/index"><img src="icons/logo.png" width="100"></a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/index">Home</a></li>
+        <li><a href="/verse-generator">Verses</a></li>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <select  class="select select-bordered w-full max-w-xs m-10" id="chapterSelect" disabled></select>
+            <select class="select select-bordered  max-w-xs m-3" id="startVerseSelect" disabled>
+            </select>
+            <select class="select select-bordered  max-w-xs m-3" id="endVerseSelect" disabled>
+            </select>
+            
+            <button id="generateButton" disabled class="btn">Generate Images</button>
+            
+
+            <canvas id="canvas" width="1080" height="1920" class="hidden"></canvas>
+          </div>
+        </div>
+      </div>
+    
+
+
+      <script src="js/main.js"></script>
+
+    <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+        <aside class="items-center grid-flow-col">
+          <a href=""><img src="icons/logo.png" width="100"></a>  
+          <p>Copyright © 2024 - All right reserved</p>
+        </aside> 
+        
+      </footer>
+    </body>
+    </html>

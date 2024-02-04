@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quran Video Generator</title>
+    <!-- Add any additional head elements here -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .selected {
+            border: 2px solid grey;
+        }
+        .video-selector {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar bg-base-100">
+        <div class="flex-1">
+          <a href="/index"><img src="icons/logo.png" width="100"></a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="/index">Home</a></li>
+            <li><a href="/verse-generator">Verses</a></li>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w">
+            <form action="/generate-video" method="post" enctype="multipart/form-data">
+                <h1 style="margin: 10px;">Choose a Background Video:</h1>
+                <div class="grid grid-cols-3 gap-4">
+                    <img src="/thumbnails/1.png" alt="Video 1" class="video-selector rounded-xl" data-value="1.mp4">
+                    <img src="/thumbnails/2.png" alt="Video 2" class="video-selector rounded-xl" data-value="2.mp4">
+                    <img src="/thumbnails/3.png" alt="Video 3" class="video-selector rounded-xl" data-value="3.mp4">
+                    <img src="/thumbnails/4.png" alt="Video 4" class="video-selector rounded-xl" data-value="4.mp4">
+                    <img src="/thumbnails/5.png" alt="Video 5" class="video-selector rounded-xl" data-value="5.mp4">
+                    <img src="/thumbnails/6.png" alt="Video 6" class="video-selector rounded-xl" data-value="6.mp4">
+                    <!-- Hidden input to store the selected video value -->
+                    <!-- The rest of your form inputs go here -->
+                </div>
+                
+                <input type="hidden" name="background_video" id="background_video_input" value="">
+
+                
+        
+                <select class="select select-bordered w-full max-w-xs m-5" id="chapterSelect" name="chapter">
+                    <option value="">Select Chapter</option>
+                    <!-- Chapter options will be populated here -->
+                </select>
+        
+                <select class="select select-bordered max-w-xs m-3" id="startVerseSelect" name="start_verse">
+                    <option value="">Select Start Verse</option>
+                    <!-- Start Verse options will be populated here -->
+                </select>
+        
+                <select class="select select-bordered max-w-xs m-3" id="endVerseSelect" name="end_verse">
+                    <option value="">Select End Verse</option>
+                    <!-- End Verse options will be populated here -->
+                </select>
+        
+                <button type="submit" class="btn btn-wide">Generate Video</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    
+      <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+        <aside class="items-center grid-flow-col">
+          <a href="index.html"><img src="icons/logo.png" width="100"></a>  
+          <p>Copyright © 2024 - All right reserved</p>
+        </aside> 
+        
+      </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>    
+    <script>
+       document.querySelectorAll('.video-selector').forEach(function(img) {
+    img.addEventListener('click', function() {
+        // Set the value of the hidden input to the data-value of the clicked image
+        document.getElementById('background_video_input').value = this.getAttribute('data-value');
+        
+        // Remove the 'selected' class from all images
+        document.querySelectorAll('.video-selector').forEach(function(otherImg) {
+            otherImg.classList.remove('selected');
+        });
+
+        // Add the 'selected' class to the clicked image
+        this.classList.add('selected');
+    });
+});
+
+        </script>
+    <script>
+        $(document).ready(function() {
+            // Populate chapters on page load
+            updateChapters();
+
+            $('#chapterSelect').change(function() {
+                var chapter = $(this).val();
+                updateVerses(chapter);
+            });
+        });
+
+        function updateChapters() {
+            // AJAX call to get chapters
+            $.getJSON('/get-chapters', function(data) {
+                var chapterSelect = $('#chapterSelect');
+                chapterSelect.empty();
+                chapterSelect.append('<option value="">Select Chapter</option>');
+                $.each(data, function(key, value) {
+                    chapterSelect.append('<option value="' + key + '">' + value + '</option>');
+                });
+            });
+        }
+
+        function updateVerses(chapter) {
+            // AJAX call to get verses for the selected chapter
+            $.getJSON('/get-verses/' + chapter, function(data) {
+                var startVerseSelect = $('#startVerseSelect');
+                var endVerseSelect = $('#endVerseSelect');
+                startVerseSelect.empty();
+                endVerseSelect.empty();
+
+                startVerseSelect.append('<option value="">Select Start Verse</option>');
+                endVerseSelect.append('<option value="">Select End Verse</option>');
+
+                $.each(data, function(key, value) {
+                    startVerseSelect.append('<option value="' + key + '">' + value + '</option>');
+                    endVerseSelect.append('<option value="' + key + '">' + value + '</option>');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
