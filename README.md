@@ -2,6 +2,9 @@
 
 Welcome to the Mesk Ul-Khitam project! Mesk Ul-Khitam is an open-source application designed to generate video clips with selected verses from the Quran. This project integrates Quranic text with audio recitations, allowing users to create personalized videos.
 
+![image](https://github.com/muazhurani/mesk-ulkhitam/assets/56019901/e23c1470-38f3-4afc-a23b-bd97c34fbbaf)
+
+
 ## Features
 
 - **Dynamic Quran Verse Selection**: Users can select specific chapters and verses from the Quran for video generation.
